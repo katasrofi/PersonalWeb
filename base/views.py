@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 # Create your views here.
 
 def home(request):
-    return HttpResponse('HOME PAGE')
+    return render(request, 'base/home.html')
 
-def profiles(request):
-    return HttpResponse('PROFILES')
+def profiles(request, pk):
+    return render(request, 'base/profiles.html')
 
 
