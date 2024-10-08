@@ -1,10 +1,15 @@
 from django.shortcuts import render
+from .models import Product 
 # Create your views here.
 
 def home(request):
-    return render(request, 'base/home.html')
+    product = Product.objects.all()
+    context = {'product': product}
+    return render(request, 'base/home.html', context)
 
 def profiles(request, pk):
-    return render(request, 'base/profiles.html')
+    product = Product.objects.get(id=pk)
+    context = {'product': product}
+    return render(request, 'base/profiles.html', context)
 
 
