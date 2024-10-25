@@ -5,7 +5,20 @@
 <h1>This is HOME</h1>
 
 <div>
-  <a href="{% url 'CREATE-PROFILES' %}">Create Profiles
-    </a>
+  <ul>
+  {% for item in product %}
+    <li>
+      <a href="{% url 'UPDATE-PROFILES' item.pk %}">Edit {{item.name}}</a>
+    </li>
+    
+  {% endfor %}
+
+  {% for item in all_profiles %}
+  <li>
+    <a href="{% url 'PROFILES-DETAILS' item.pk %}">Profiles {{item.name}}</a>
+  </li>
+  {% endfor %}
+  </ul>
+    <a href="{% url 'CREATE-PROFILES' %}">Create Profiles</a>
 </div>
 {% endblock %}

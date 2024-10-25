@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Profiles 
+from .models import Products 
 
 class ProfilesForm(ModelForm):
     class Meta:
-        model = Profiles
+        model = Products
         fields = '__all__'

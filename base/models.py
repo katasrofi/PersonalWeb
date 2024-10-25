@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Product(models.Model):
+class Products(models.Model):
 #    url = models.CharField(max_length=555)
 #    title = models.CharField(max_length=255)
 #    asin = models.CharField(max_length=110, unique=True)
@@ -15,6 +15,8 @@ class Product(models.Model):
     
     name = models.CharField(max_length=255)
     describe = models.CharField(max_length=555, null=True)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name 
@@ -28,7 +30,7 @@ class Room(models.Model):
         return self.name
 
 class Profiles(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True, blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -40,7 +42,7 @@ class Messages(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     profiles = models.ForeignKey(Profiles, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, null=True, blank=True)
     describe = models.TextField()
 
     def __str__(self):

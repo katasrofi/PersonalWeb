@@ -1,7 +1,17 @@
 <nav>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/profiles">Profiles</a></li>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    
+    <li>
+      <a href={% url 'PROFILES' %}>Profiles</a>
+    </li>
+
+    <!-- {% for item in product %}
+      <li><a href={% url 'PROFILES-DETAILS' item.pk %}> {{ item.name }}</li>
+    {% endfor %} -->
   </ul>
 </nav>
+
 

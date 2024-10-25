@@ -2,6 +2,10 @@
 
 {% block content %}
   <title>PROFILES</title>
-  <h1>This is PROFILES</h1>
-  <h2></h2>
+  <h1>This is List of Profiles</h1>
+  {% for item in product %}
+    <li> {{item.name}} </li>
+    <li> {{item.describe}} </li>
+    <br>    
+  {% endfor %}
 {% endblock %}
