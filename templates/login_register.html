@@ -1,0 +1,98 @@
+{% extends 'main.html' %}
+
+<!-- Python code -->
+{% block content %}
+
+<!-- Load CSS style -->
+{% load static %}
+<link rel="stylesheet"
+    href="{% static 'styles.css' %}"
+>
+
+<!-- Login Form -->
+{% if page == 'login' %}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        
+        <!-- Create Login form -->
+        <div class="form-register">
+            <!-- Username Form -->
+            <label>Username:</label>
+            <input 
+                type="text" 
+                name="username" 
+                placeholder="Enter Username" 
+            />
+        </div>
+
+        <div class="form-register">
+            <!-- Password Form -->
+            <label>Password:</label>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Enter Password"
+            />
+        </div>
+
+        <!-- Login Button -->
+        <input 
+            type="submit" 
+            value="Login" 
+        />
+    </form>
+
+    <p>Haven't Sign up yet?</p>
+    <a href="{% url 'REGISTER' %}">
+        Sign Up
+    </a>
+</div>
+
+{% else %}
+<div>
+    <form 
+        method="POST" 
+        action=""
+    >
+    {% csrf_token %}
+    {{form.as_p}}
+    <!-- Create Register Form -->
+<!-- 
+    <div class="form-register">
+        <label>Username:</label>
+        <input
+            type="text"
+            name="Username"
+            placeholder="Enter Your Username"
+        />
+    </div>
+
+    <div class="form-register">
+        <label>Password:</label>
+        <input
+            type="password"
+            name="Password"
+            placeholder="Enter Your Password"
+        />
+    </div>
+
+    <div class="form-register">
+        <label>Confirm Password:</label>
+        <input
+            type="password"
+            name="Password"
+            placeholder="Confirm Your Password"
+        />
+    </div> -->
+
+    <!-- Register Button -->
+    <input 
+        type="submit"
+        value="Register"
+    />
+    </form>
+</div>
+
+{% endif %}
+{% endblock content %}

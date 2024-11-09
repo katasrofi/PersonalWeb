@@ -1,24 +1,73 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<title>HOME</title>
-<h1>This is HOME</h1>
+<style>
+  .HOME-CONTAINER{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+</style>
 
-<div>
-  <ul>
-  {% for item in product %}
-    <li>
-      <a href="{% url 'UPDATE-PROFILES' item.pk %}">Edit {{item.name}}</a>
-    </li>
+<div class="HOME-CONTAINER">
+  <!-- Sidebar container -->
+  <div>
+
+    <!-- Sidebar Title -->
+    <h3>Browse Profiles</h3>
+    <hr>
     
+    <!-- Home link  -->
+    <a href="{% url 'HOME' %}">
+      All
+    </a>
+    
+    <!-- List of product name link -->
+    {% for topic in sidebar_product %}
+    <div>
+      <a href="{% url 'HOME' %}?q={{topic.name}}">
+        {{topic.name}}
+      </a>
+    </div>
+    {% endfor %}
+
+  </div>
+
+  <!-- The content in home page -->
+  <div>
+  <h5>{{search_count}} profiles available</h5>
+  {% for item in product %}
+      {% if request.user == item.user %}
+      <!-- Edit Button -->
+      <a href="{% url 'UPDATE-PROFILES' item.pk %}">
+        Edit |
+      </a>
+
+      <!-- Delete Button -->
+      <a href="{% url 'DELETE-PROFILES' item.pk %}">
+        Delete
+      </a>
+      
+      {% endif %}
+      <!-- Newline, Name and separator line -->
+      <br>
+      <span>@{{item.name}}</span>
+      <br>
+      <hr>
   {% endfor %}
 
   {% for item in all_profiles %}
   <li>
-    <a href="{% url 'PROFILES-DETAILS' item.pk %}">Profiles {{item.name}}</a>
+    <a href="{% url 'PROFILES-DETAILS' item.pk %}">
+      Profiles {{item.name}}
+    </a>
   </li>
   {% endfor %}
-  </ul>
-    <a href="{% url 'CREATE-PROFILES' %}">Create Profiles</a>
+
+  <!-- Create Profiles Link  -->
+  <a href="{% url 'CREATE-PROFILES' %}">
+    Create Profiles
+  </a>
+
+  </div>
 </div>
 {% endblock %}
