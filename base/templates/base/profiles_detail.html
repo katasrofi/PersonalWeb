@@ -2,7 +2,18 @@
 
 {% block content %}
 
-<h2>{{ product.name }} </h2>
-<p> {{ product.describe }} </p>
-
+<h2>{{ profile.name }} </h2>
+<h3>User: {{ detail_product.user }} </h3>
+<p> {{ detail_product.describe }} </p>
+<!-- 
+<div>
+    <small>Conversations</small>
+    <hr>
+    {% for message in messages %}
+        {{message.user}}
+    {% endfor %}
+    <small>
+        
+    </small>
+</div> -->
 {% endblock content %}

@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages 
 from django.db.models import Q 
 from django.urls import reverse_lazy
-from .models import Products
+from .models import Products, Profiles
 from .forms import ProfilesForm, RegisterForm  
 # Create your views here.
 
@@ -118,22 +118,30 @@ class CustomRegisterPage(FormView):
        login(self.request, user)
        messages.success(self.request, 'Registration Successfully')
        return super().form_valid(form)
-   
-class ProfilesView(DetailView):
+
+class ProfilesList(ListView):
     model = Products
-    template_name = 'base/profiles_detail.html'
+    template_name = 'base/profiles.html'
     context_object_name = 'product'
+
+class ProfilesView(DetailView):
+    model = Profiles 
+    template_name = 'base/profiles_detail.html'
+    context_object_name = 'profile'
     pk_url_kwarg = 'pk' 
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['all_profiles'] = Products.objects.all()
+        profile = self.get_object()
+        product = profile.product 
+        context['messages'] = profile.message_set.all()
+        context['product'] = product
         return context 
 
-def profiles(request):
-    product = Products.objects.all()
-    context = {'product': product}
-    return render(request, 'base/profiles.html', context)
+#def profiles(request):
+#    product = Products.objects.all()
+#    context = {'product': product}
+#    return render(request, 'base/profiles.html', context)
 
 class CreateProfilesForm(LoginRequiredMixin, CreateView):
     model = Products 

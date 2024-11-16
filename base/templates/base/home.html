@@ -1,12 +1,20 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<style>
+
+<!-- <style>
   .HOME-CONTAINER{
     display: grid;
     grid-template-columns: 1fr 4fr;
   }
-</style>
+</style> -->
+
+<!-- Load CSS File -->
+{% load static %}
+<link 
+  rel="stylesheet"
+  href="{% static 'base/styles_base.css' %}"
+>
 
 <div class="HOME-CONTAINER">
   <!-- Sidebar container -->
@@ -33,35 +41,32 @@
   </div>
 
   <!-- The content in home page -->
-  <div>
+  <div class="CRUD-Button">
+  <!-- <div> -->
   <h5>{{search_count}} profiles available</h5>
-  {% for item in product %}
-      {% if request.user == item.user %}
-      <!-- Edit Button -->
-      <a href="{% url 'UPDATE-PROFILES' item.pk %}">
-        Edit |
-      </a>
 
-      <!-- Delete Button -->
-      <a href="{% url 'DELETE-PROFILES' item.pk %}">
-        Delete
-      </a>
-      
-      {% endif %}
-      <!-- Newline, Name and separator line -->
-      <br>
-      <span>@{{item.name}}</span>
-      <br>
-      <hr>
-  {% endfor %}
+    {% for item in product %}
+        {% if request.user == item.user %}
+        
+        <!-- Edit Button -->
+        <a href="{% url 'UPDATE-PROFILES' item.pk %}">
+          Edit |
+        </a>
 
-  {% for item in all_profiles %}
-  <li>
-    <a href="{% url 'PROFILES-DETAILS' item.pk %}">
-      Profiles {{item.name}}
-    </a>
-  </li>
-  {% endfor %}
+        <!-- Delete Button -->
+        <a href="{% url 'DELETE-PROFILES' item.pk %}">
+          Delete |
+        </a>
+        
+        <a href="{% url 'PROFILES-DETAILS' item.pk %}">
+          Details
+        </a>
+        
+        {% endif %}
+        <!-- Newline, Name and separator line -->
+        <span>@{{item.name}}</span>
+        
+    {% endfor %}
 
   <!-- Create Profiles Link  -->
   <a href="{% url 'CREATE-PROFILES' %}">

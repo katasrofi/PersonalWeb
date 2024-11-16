@@ -1,0 +1,55 @@
+/* Home Page Style */
+.HOME-CONTAINER{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+
+  /* Gaya untuk kontainer CRUD-Button */
+.CRUD-Button {
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #f9f9f9;
+  width: fit-content;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+/* Gaya untuk setiap produk */
+.CRUD-Button hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+/* Gaya untuk nama item */
+.CRUD-Button span {
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin: 5px 0;
+}
+
+/* Gaya untuk link tombol Edit dan Delete */
+.CRUD-Button a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+/* Tambahkan gaya berbeda untuk tombol Edit dan Delete */
+.CRUD-Button a:hover {
+  text-decoration: underline;
+}
+
+.CRUD-Button a:nth-child(1) {
+  color: #28a745; /* Warna hijau untuk Edit */
+}
+
+.CRUD-Button a:nth-child(2) {
+  color: #dc3545; /* Warna merah untuk Delete */
+}
+
+
+
+/* Profiles CSS */
